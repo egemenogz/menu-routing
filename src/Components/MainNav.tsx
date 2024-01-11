@@ -76,7 +76,7 @@ export const MainNav: React.FC<NavbarProps> = ({setAll, setBreakfast, setShakes,
   };
   return (
     <div style={styles.navbar}>
-      <h2 style={styles.logo}>Lina</h2>
+      <h2 style={styles.logo}>.Lina</h2>
 
       <Buttons
         setAll={setAll} setBreakfast={setBreakfast} setShakes={setShakes} setLunch={setLunch}

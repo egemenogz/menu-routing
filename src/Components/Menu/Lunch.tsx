@@ -6,7 +6,7 @@ import {
   ReactPortal,
 } from "react";
 import imgMenu from "../Img/undraw_barbecue.svg";
-import { Container, Card } from "react-bootstrap";
+import {Card } from "react-bootstrap";
 
 interface LunchProps {
   lunch: boolean;
@@ -23,10 +23,11 @@ export const Lunch: React.FC<LunchProps> = ({ lunch, items }) => (
       gridAutoRows: "28rem",
       columnGap: "2rem",
       width: "8rem",
+      gap: "2rem",
     }}
   >
     {lunch &&
-      items.map(
+      items.filter((item: {category: string})=> item.category ==="lunch").map(
         (event: {
           price: ReactNode;
           id: Key | null | undefined;
@@ -49,16 +50,29 @@ export const Lunch: React.FC<LunchProps> = ({ lunch, items }) => (
             | null
             | undefined;
         }) => (
-          <Container key={event.id}>
-            <Card>
-              <Card.Body>
-                <Card.Img variant="top" src={imgMenu}></Card.Img>
-                <Card.Title>{event.title}</Card.Title>
-                <Card.Text>{event.desc}</Card.Text>
-                <Card.Text>${event.price}</Card.Text>
-              </Card.Body>
-            </Card>
-          </Container>
+          <Card key={event.id}>
+            <Card.Img variant="top" src={imgMenu}></Card.Img>
+            <Card.Body
+              style={{
+                fontFamily: "'Libre Franklin', sans-serif",
+                lineHeight: "1.5",
+                position:"relative",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+              }}
+            >
+              <Card.Title style={{ fontSize: "1.3rem", fontWeight: "600" }}>
+                {event.title}
+              </Card.Title>
+              <Card.Text style={{ fontSize: "1rem", fontWeight: "400" }}>
+                {event.desc}
+              </Card.Text>
+              <Card.Text style={{ fontSize: "1.3rem", fontWeight: "600" }}>
+                ${event.price}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         )
       )}
   </div>
